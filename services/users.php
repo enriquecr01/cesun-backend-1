@@ -43,20 +43,14 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
 		$user->setRole($_POST['role']);
 		//add
 		if ($user->add())
-			echo json_encode(array(
-				'status' => 0,
-				'errorMessage' => 'User added succesfully'
-			));
+			$response = array('status' => 0, 'result' => 'User added succesfully');
 		else
-			echo json_encode(array(
-				'status' => 2,
-				'errorMessage' => 'Could not add user'
-			));
+			$response = array('status' => 2, 'result' => 'Could not add user');
 	} else
-		echo json_encode(array(
+		$response = array(
 			'status' => 1,
-			'errorMessage' => 'Missing Parameters'
-		));
+			'result' => 'Missing Parameters'
+		);
 }
 
 echo json_encode($response);
